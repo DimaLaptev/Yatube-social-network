@@ -34,4 +34,4 @@ if settings.DEBUG:
     )
 
 handler404 = 'core.views.page_not_found'
-handler404 = 'core.views.forbidden'
+handler403 = 'core.views.forbidden'
