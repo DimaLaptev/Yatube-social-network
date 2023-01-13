@@ -236,11 +236,11 @@ class FollowViewsTest(TestCase):
         self.authorized_client.force_login(self.user)
         self.authorized_client_2 = Client()
         self.authorized_client_2.force_login(self.user_2)
-    
+
     def test_user_follower_authors(self):
         '''The user can subscribe to other users.
            Posts are available to the user who subscribed to the author.'''
-        
+
         data_follow = {'user': FollowViewsTest.user,
                        'author': FollowViewsTest.author}
         redirect_url = reverse(
@@ -249,8 +249,8 @@ class FollowViewsTest(TestCase):
         )
         response = self.authorized_client.post(
             reverse('posts:profile_follow',
-            kwargs={'username': FollowViewsTest.author.username}),
-            data=data_follow, follow=True
+                    kwargs={'username': FollowViewsTest.author.username}),
+            data=data_follow, follow=True,
         )
         new_follow_num = Follow.objects.filter(
             user=FollowViewsTest.user).count()
@@ -275,13 +275,13 @@ class FollowViewsTest(TestCase):
         )
         new_posts = response_follower.context['page_obj']
         self.assertIn(new_follower, new_posts)
-    
+
     def test_unfollower_no_see_new_post(self):
         '''New user post does not appear in the non-subscriber's feed.'''
         new_follower = Post.objects.create(
             author=FollowViewsTest.author,
             text='Тестовый текст',
-            )
+        )
         Follow.objects.create(user=FollowViewsTest.user,
                               author=FollowViewsTest.author)
         response_unfollower = self.authorized_client_2.get(

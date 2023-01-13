@@ -34,7 +34,7 @@ class PostViewTests(TestCase):
             author=cls.user,
             group=cls.group,
         )
-    
+
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()
@@ -58,6 +58,7 @@ class PostViewTests(TestCase):
             content=self.small_gif,
             content_type='image/gif'
         )
+
     def test_views_correct_template(self):
         """Checkout views uses the correct template."""
         templates_pages_names = {
