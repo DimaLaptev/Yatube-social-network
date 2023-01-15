@@ -57,7 +57,7 @@ class PostModelTests(TestCase):
         text_help_text = PostModelTests.form_post.fields['text'].help_text
         group_help_text = PostModelTests.form_post.fields['group'].help_text
         image_help_text = PostModelTests.form_post.fields['image'].help_text
-        comment_help_text = PostModelTests.form_comment.fields['text'].help_text
+        com_help_text = PostModelTests.form_comment.fields['text'].help_text
         self.assertEqual(
             text_help_text,
             'Текст нового поста',
@@ -71,6 +71,6 @@ class PostModelTests(TestCase):
             'Загрузите изображение',
         )
         self.assertEqual(
-            comment_help_text,
+            com_help_text,
             'Оставьте комментарий',
         )
