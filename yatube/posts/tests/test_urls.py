@@ -73,6 +73,7 @@ class PostURLTests(TestCase):
             self.post_url: 'posts/post_detail.html',
             '/create/': 'posts/create_post.html',
             f'{self.post_url}edit/': 'posts/create_post.html',
+            '/follow/': 'posts/follow.html',
         }
         for address, template in templates_url_names.items():
             with self.subTest(address=address):
@@ -84,7 +85,7 @@ class PostURLTests(TestCase):
                 self.assertTemplateUsed(response, template, error_name)
 
     def test_404(self):
-        """Checout of request the 404-page"""
+        """Checkout of request the 404-page"""
         response = self.guest_client.get('/test_404', follow=True)
         error_name = 'Error! Redirect on 404-page not working.'
         self.assertEquals(response.status_code,
